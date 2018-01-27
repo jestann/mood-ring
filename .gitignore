@@ -3,10 +3,6 @@
 # generated css
 src/css
 
-# error log + yarn
-yarn-error.log
-yarn.lock
-
 # dependencies
 /node_modules
 
