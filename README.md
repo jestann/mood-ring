@@ -1,3 +1,3 @@
-# SheHacks
+# Mood Ring
 
-### making the new normal
+### A super awesome tracker for anxiety and PTSD
