@@ -1,0 +1,16 @@
+{
+  "name": "moodring",
+  "author": "she-hacks-group",
+  "description": "a tracker for anxiety and ptsd",
+  "repository": "https://github.com/jestann/mood-ring.git",
+  "main": "index.js",
+  "version": "1.0.0",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.1"
+  },
+  "dependencies": {
+    "react": "^16.2.0"
+  }
+}
