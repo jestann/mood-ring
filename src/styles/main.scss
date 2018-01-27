@@ -1,0 +1,37 @@
+/* Variables */
+
+$yellow: #FAFC5E;
+$dark-grey: #5E5E5E;
+$wine: #491217;
+$light-grey: #E1DFDF;
+$serif: 'Cambria';
+
+.app {
+  background: white;
+  font-family: $serif;
+  font-size: 2rem;
+  text-align: center;
+  padding: 5%;
+}
+
+.logo {
+  padding: 10% 0%;
+  width: 50%;
+}
+
+.title {
+  color: $wine;
+  font-size: 1.5rem;
+}
+
+.main-title {
+  font-size: 2rem;
+}
+
+.box {
+  background: $light-grey;
+  border-radius: 5px;
+  color: $wine;
+  padding: 5%;
+  margin: 5%;
+}

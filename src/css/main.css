@@ -1,0 +1,25 @@
+/* Variables */
+.app {
+  background: white;
+  font-family: "Cambria";
+  font-size: 2rem;
+  text-align: center;
+  padding: 5%; }
+
+.logo {
+  padding: 10% 0%;
+  width: 50%; }
+
+.title {
+  color: #491217;
+  font-size: 1.5rem; }
+
+.main-title {
+  font-size: 2rem; }
+
+.box {
+  background: #E1DFDF;
+  border-radius: 5px;
+  color: #491217;
+  padding: 5%;
+  margin: 5%; }
