@@ -1,0 +1,54 @@
+/* Variables */
+
+$yellow: #FAFC5E;
+$wine: #491217;
+$light-grey: #E1DFDF;
+$dark-grey: #5E5E5E;
+$serif: 'Cambria';
+
+
+/* Main Classes */
+
+.main-img {
+  width: 75%;
+  border-radius: 5px;
+  margin-top: 2%;
+}
+
+.graph {
+  width: 75%;
+  border-radius: 5px;
+  margin-top: 2%;
+}
+
+a {
+  color: $wine;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a:hover {
+  color: black;
+  cursor: pointer;
+}
+
+
+/* Button */
+
+.button a {
+  background-color: $wine;
+  font-size: 1.2rem;
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.button a:hover {
+  cursor: pointer;
+  background-color: black;
+}
+
+.button-link {
+  color: white;
+  text-decoration: none;
+}

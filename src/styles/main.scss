@@ -1,31 +1,52 @@
-/* Variables */
+@import './variables.scss';
 
-$yellow: #FAFC5E;
-$dark-grey: #5E5E5E;
-$wine: #491217;
-$light-grey: #E1DFDF;
-$serif: 'Cambria';
+/* Overall Styles */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $serif;
+}
 
 .app {
-  background: white;
-  font-family: $serif;
   font-size: 2rem;
   text-align: center;
+  padding: 0;
+}
+
+/* Splash */
+
+.splash {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  background: $wine;
+}
+
+.main-title {
+  color: white;
+  font-size: 2rem;
+}
+
+/* Main */
+
+.main {
+  background: white;
   padding: 5%;
+}
+
+.welcome {
+  font-size: 3rem;
+  margin-top: 5%;
 }
 
 .logo {
   padding: 10% 0%;
   width: 50%;
-}
-
-.title {
-  color: $wine;
-  font-size: 1.5rem;
-}
-
-.main-title {
-  font-size: 2rem;
 }
 
 .box {
@@ -34,4 +55,31 @@ $serif: 'Cambria';
   color: $wine;
   padding: 5%;
   margin: 5%;
+}
+
+.title {
+  color: $wine;
+  font-size: 1.5rem;
+}
+
+.small {
+  font-size: .8rem;
+}
+
+.main-form {
+  color: $dark-grey;
+  background-color: $light-grey;
+  border-radius: 5px;
+  height: 200px;
+  width: 75%;
+  resize: none;
+  padding: 5%;
+  margin: 3% 0;
+}
+
+.footer {
+  background: $wine;
+  color: white;
+  font-size: 1.1rem;
+  padding: 5%;
 }
