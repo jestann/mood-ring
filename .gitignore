@@ -1,5 +1,8 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
+# generated css
+src/css
+
 # error log + yarn
 yarn-error.log
 yarn.lock
