@@ -45,9 +45,12 @@ body {
 }
 
 .heart-rate {
-  color: $yellow;
+  margin: auto;
+  color: $wine;
   font-size: 4rem;
-  border: 5px solid $yellow;
+  width: 25%;
+  background-color: $yellow;
+  border: 10px solid $wine;
   border-radius: 100%;
 }
 
