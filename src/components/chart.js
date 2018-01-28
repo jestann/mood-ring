@@ -1,6 +1,17 @@
  import React, {components} from 'react';
  import {Bar, Line, Pie} from 'react-chartjs-2';
- <Line
+
+class chart extends components{
+ constructor(){
+  this.state = {
+   ChartData:{
+    Labels:{"5 seconds ago", "4 seconds ago", "3 seconds ago", "2 seconds ago", "Just now"}   }
+  }
+ super(props);
+ render(){
+  return(
+   <div className= "chart">
+   <Line
           data={this.temperature.chartData}
           options={{
             title:{
@@ -14,3 +25,8 @@
             }
           }}
         />
+
+   </div>
+   )}}
+ 
+ 
