@@ -35,15 +35,17 @@ class App extends Component {
 
   // gets data from Firebase and syncs with state  
   componentWillMount() {
-    let tempsRef = fire.database().ref("temps").limitToLast(100)
-    tempsRef.on('child_add', snapshot => {
+    this.tempsRef = fire.database().ref("temps").limitToLast(100)
+    this.tempsRef.on('child_add', snapshot => {
       let temp = snapshot.val()
       this.setState({ temps: [temp].concat(this.state.temps) })
     })
+    let lastIndex = this.state.temps.length - 1
+    this.setState({ recentRate: this.state.temps[lastIndex]})
   }
 
   componentWillUnmount () {
-    this.firebaseRef.off()
+    this.tempsRef.off()
   }
   
   componentDidMount () {
