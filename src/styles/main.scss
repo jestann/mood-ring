@@ -32,6 +32,11 @@ body {
   font-size: 2rem;
 }
 
+.subtitle {
+  color: white;
+  font-size: 1rem;
+}
+
 /* Main */
 
 .main {
@@ -46,12 +51,13 @@ body {
 
 .heart-rate {
   margin: auto;
-  color: $wine;
+  color: $dark-grey;
   font-size: 4rem;
-  width: 25%;
+  width: 20%;
   background-color: $yellow;
-  border: 10px solid $wine;
+  border: 10px solid $dark-grey;
   border-radius: 100%;
+  padding: 2%;
 }
 
 .logo {
@@ -69,7 +75,7 @@ body {
 
 .title {
   color: $wine;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
 }
 
 .small {
@@ -85,6 +91,11 @@ body {
   resize: none;
   padding: 5%;
   margin: 3% 0;
+}
+
+.chart {
+  margin-top: 1%;
+  margin-bottom: 1%;
 }
 
 .footer {
