@@ -27,15 +27,12 @@ while 1:
   
         # insert record
         d=temperature_c.decode('ASCII')
-        if len(d) > 0:
+        if len(d) > 0 and d != '/r' and d != '/n' and d != '/r/n' and int(d) > 0:
             result = requests.post(firebase_url, data=json.dumps(int(d)))
             print ('Record inserted. Result Code = ' + str(result.status_code) + ',' + str(result))
         #time.sleep(fixed_interval)
                                
     except EOFError:
         print ("EOF")
-                               
-        
-       
 
    # time.sleep(fixed_interval)
