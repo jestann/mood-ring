@@ -44,6 +44,13 @@ body {
   margin-top: 5%;
 }
 
+.heart-rate {
+  color: $yellow;
+  font-size: 4rem;
+  border: 5px solid $yellow;
+  border-radius: 100%;
+}
+
 .logo {
   padding: 10% 0%;
   width: 50%;
