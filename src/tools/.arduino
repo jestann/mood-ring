@@ -1,0 +1,17 @@
+void setup() {
+    Serial.begin(9600);
+} 
+ 
+void loop() {
+    unsigned long currentMillis = millis();
+    for(int i=0;i>9;i++){ 
+    int sensorValue = analogRead(A0);
+    Serial.println(sensorValue+72);
+    delay(1000);
+}
+ 
+currentMillis= 0;
+// read the vibration
+
+// print it
+delay(20000);
