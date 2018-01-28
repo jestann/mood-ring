@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import fire from './../tools/fire'
+import auth from './../tools/auth'
 
 import Alert from './alert'
 import Home from './home'
@@ -20,36 +21,55 @@ class App extends Component {
     
     // set initial temps
     let temps = []
-    let tempsRef = fire.database().ref("temperature").limitToLast(10)
+    let tempsRef = fire.database().ref("temperature")
     tempsRef.once('value', (snap) => {
       snap.forEach((temp) => {
         temps.push(temp.val())
       })
     })
+    let saveTemps = temps
+    let recent = saveTemps.pop()
+
+    // set initial alerts
+    let alerts = []
+    let alertsRef = fire.database().ref("alerts")
+    alertsRef.once('value', (snap) => {
+      snap.forEach((alert) => {
+        alerts.push(alert.val())
+      })
+    })
 
     this.state = { 
       temps: temps,
+      recent: recent,
+      alerts: alerts,
       loading: true,
       auth: false,
       new: true,
-      alert: false
+      alert: false,
+      note: ''
     }
     this.login = this.login.bind(this)
     this.saveUser = this.saveUser.bind(this)
     this.closeAlert = this.closeAlert.bind(this)
     this.addNote = this.addNote.bind(this)
+    this.handleNoteChange = this.handleNoteChange.bind(this)
   }
 
-  // gets data from Firebase and syncs with state  
   componentWillMount() {
     // continuously update temps
-    let tempsRef = fire.database().ref("temperature").limitToLast(100)
+    let tempsRef = fire.database().ref("temperature")
     tempsRef.on('child_added', (snap) => {
-      let temp = snap.val()
-      this.setState({ temps: [temp].concat(this.state.temps) })
+      let temps = this.state.temps
+      temps.push(snap.val())
+      this.setState({ temps: temps })
     })
-    // let lastIndex = this.state.temps.length - 1
-    // this.setState({ currentRate: this.state.temps[lastIndex]})
+    
+    let temps = this.state.temps
+    let recent = temps.pop()
+    if (recent > 75) {
+      this.setState({ alert: true })
+    }
   }
 
   /* componentWillUnmount () {
@@ -61,11 +81,17 @@ class App extends Component {
   }
   
   closeAlert () {
+    this.addNote(this.state.note, this.state.recent)
     this.setState({ alert: false })
   }
   
-  addNote (note) {
-    fire.database().ref('notes').push({ timestamp: "now", note: note })
+  handleNoteChange (event) {
+    this.setState({ note: event.target.value })
+  }
+  
+  addNote (note, heartRate) {
+    fire.database().ref('alerts').push(note)
+    // fire.database().ref('alerts').push({ timestamp: "now", note: note, heartrate: heartRate })
   }
 
   login () {
@@ -96,12 +122,12 @@ class App extends Component {
         return (
           <Login {...this.state} login={this.login} />
         )
-      } else if (recent > 75) {
+      } else if (this.state.alert) {
         return (
-        <div className="app">
-          <Alert {...this.state} recent={recent} />
-          <footer className="footer">Copyright 2018 She Hacks Boston.</footer>
-        </div>
+          <div className="app">
+            <Alert {...this.state} recent={recent} closeAlert={this.closeAlert} handleNoteChange={this.handleNoteChange} />
+            <footer className="footer">Copyright 2018 She Hacks Boston.</footer>
+          </div>
         )
       } else {
         return (
@@ -109,7 +135,7 @@ class App extends Component {
             <header className="welcome">Hello there, User!</header>
             <Switch>
               <Route exact path="/" render={() => ( <Home {...this.state} /> )} />
-              <Route path="/alert" render={() => ( <Alert {...this.state} closeAlert={this.closeAlert} addNote={this.addNote} /> )} />
+              <Route path="/alert" render={() => ( <Alert {...this.state} closeAlert={this.closeAlert} handleNoteChange={this.handleNoteChange} /> )}/>
               <Route path="/newUser" render={() => ( <NewUser {...this.state} saveUser={this.saveUser} /> )}/>
               <Route path="/timeline" render={() => ( <Timeline {...this.state} /> )} />
               <Route path="/alerts" render={() => ( <Alerts {...this.state} /> )} />
@@ -124,7 +150,8 @@ class App extends Component {
         <div className="splash app">
           <img className="logo" src={heart} alt="heart logo" />
           <header className="main-title">
-            <h1>Mood Ring Anxiety Tracker</h1>
+            <h1>Mood Ring</h1>
+            <div className="subtitle">a tracker for anxiety</div>
           </header>
         </div>
       )
@@ -133,39 +160,3 @@ class App extends Component {
 }
 
 export default App;
-
-/*
-
-// AUth add later
-
-// const authUI = new firebaseui.auth.AuthUI(firebase.auth())
-
-  componentDidMount: function() {
-    var self = this;
-    var uiConfig = {
-      'callbacks': {
-        'signInSuccess': function(user) {
-          if (self.props.onSignIn) {
-            self.props.onSignIn(user);
-          }
-          return false;
-        }
-      },
-      'signInOptions': [
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        firebase.auth.EmailAuthProvider.PROVIDER_ID
-      ]
-    };
-    authUi.start('#firebaseui-auth', uiConfig);
-  },
-  componentWillUnmount: function() {
-    authUi.reset();
-  },
-  render: function() {
-    return (
-      <div id="firebaseui-auth"></div>
-    );
-  }
-});
-
-*/
